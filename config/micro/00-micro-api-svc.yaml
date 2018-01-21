@@ -15,4 +15,4 @@ spec:
   # label keys and values that must match in order to receive traffic for this service
   selector:
     name: micro-api
-  type: LoadBalancer
+  type: NodePort

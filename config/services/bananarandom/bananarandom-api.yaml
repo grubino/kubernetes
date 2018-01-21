@@ -18,13 +18,14 @@ spec:
       containers:
       - name: bananarandom
         command: [
-        "/bananarandom",
-        "--registry_addresses=svc-consul.default.svc.cluster.local",
+        "go", "run",
+        "/go/src/app/main.go",
+        "--registry_address=svc-consul.default.svc.cluster.local:8500",
         "--selector=cache",
         "--server_address=0.0.0.0:9090",
         "--broker_address=0.0.0.0:10001"
         ]
-        image: bibilthaysose/bananarandom:latest
+        image: bibilthaysose/bananarandom
         imagePullPolicy: Always
         ports:
         - containerPort: 9090
