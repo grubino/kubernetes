@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-consul
+  labels:
+    name: consul-svc
+spec:
+  # label keys and values that must match in order to receive traffic for this service
+  selector:
+    app: consul
+  ports:
+    # the port that this service should serve on
+    - port: 8500
+      name: ui-port
+    - port: 8400
+      name: alt-port
+    - port: 53
+      name: udp-port
+    - port: 8443
+      name: https-port
+    - port: 8080
+      name: http-port
+    - port: 8301
+      name: serflan
+    - port: 8302
+      name: serfwan
+    - port: 8600
+      name: consuldns
+    - port: 8300
+      name: server
+                      

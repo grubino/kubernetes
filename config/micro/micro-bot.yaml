@@ -12,18 +12,24 @@ spec:
     spec:
       containers:
         - name: bot
+          env:
+            - name: SLACK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: slack-token
+                  key: SLACK_TOKEN
           resources:
             limits:
               cpu: "10m"
           command: [
-            "/micro",
-            "--registry=kubernetes",
-            "--register_ttl=60",
-            "--register_interval=30",
-            "--selector=cache",
-            "bot",
-            "--inputs=slack",
-            "--slack_token=YOUR_SLACK_TOKEN"
+          "/micro",
+          "--registry_address=http://svc-consul.default.svc.cluster.local:8500",
+          "--register_ttl=60",
+          "--register_interval=30",
+          "--selector=cache",
+          "bot",
+          "--inputs=slack",
+          "--slack_token=$SLACK_TOKEN"
           ]
           image: microhq/micro:bot
           imagePullPolicy: Always

@@ -13,13 +13,13 @@ spec:
       containers:
         - name: api
           command: [
-            "/micro",
-            "--registry=kubernetes",
-            "--register_ttl=60",
-            "--register_interval=30",
-            "--selector=cache",
-            "--enable_stats",
-            "api"
+          "/micro",
+          "--registry_address=http://svc-consul.default.svc.cluster.local:8500",
+          "--register_ttl=60",
+          "--register_interval=30",
+          "--selector=cache",
+          "--enable_stats",
+          "api"
           ]
           image: microhq/micro:kubernetes
           imagePullPolicy: Always

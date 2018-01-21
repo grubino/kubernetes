@@ -1,0 +1,31 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  namespace: default
+  name: bananarandom
+  labels:
+    app: banandamonium
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: banandamonium
+  template:
+    metadata:
+      labels:
+        app: banandamonium
+    spec:
+      containers:
+      - name: bananarandom
+        command: [
+        "/bananarandom",
+        "--registry_addresses=svc-consul.default.svc.cluster.local",
+        "--selector=cache",
+        "--server_address=0.0.0.0:9090",
+        "--broker_address=0.0.0.0:10001"
+        ]
+        image: bibilthaysose/bananarandom:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 9090
+
